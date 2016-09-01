@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   # loop through each string and setup hosts
   # if you want to add more hosts just append more
   # strings here.
-  ["host0"].each do |host|
+  ["host0","host1","host2"].each do |host|
     
     puts "-- docker #{host}"
 
@@ -41,5 +41,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"
     ansible.verbose = "vvvv"
+    ansible.groups = {
+      "group1" => ["host0","host1"],
+      "group2" => ["host2"]
+    }
   end
 end

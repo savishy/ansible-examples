@@ -11,3 +11,15 @@
   name: gather facts
   tasks:
     - setup:
+
+- hosts: group1
+  name: gather facts about group 2
+  tasks:
+    - command: "echo {{ hostvars['host2']['ansible_eth0']['ipv4']['address'] }}"
+
+- hosts: group2
+  name: gather facts about group 1
+  tasks:
+    - command: "echo {{ hostvars['host0']['ansible_eth0']['ipv4']['address'] }}"
+    - command: "echo {{ hostvars['host1']['ansible_eth0']['ipv4']['address'] }}"
+
