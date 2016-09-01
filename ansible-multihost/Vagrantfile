@@ -1,0 +1,45 @@
+# this ensures that vagrant up will use docker by default
+# instead of virtualbox.
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+
+Vagrant.configure("2") do |config|
+
+  # loop through each string and setup hosts
+  # if you want to add more hosts just append more
+  # strings here.
+  ["host0"].each do |host|
+    
+    puts "-- docker #{host}"
+
+    # setup each host.
+    config.vm.define host do |config2|
+      config2.vm.provider "docker" do |d|
+
+        # build Dockerfile from current dir
+        d.build_dir = "."
+
+        # set name of this host
+        d.name = "#{host}"
+
+        # expect the host to remain running.
+        d.remains_running = true
+
+        # enable ssh to enable provisioning
+        # https://www.vagrantup.com/docs/docker/configuration.html#has_ssh
+        d.has_ssh = true
+        d.cmd = ["/sbin/my_init", "--enable-insecure-key"]
+      end
+    end
+  end
+
+  # enable ssh into docker container as described at
+  # http://stackoverflow.com/a/28771401/682912
+  config.ssh.username = "root"
+  config.ssh.private_key_path = "./insecure_key"
+  
+  # now lets provision all hosts
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+    ansible.verbose = "vvvv"
+  end
+end
