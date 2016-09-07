@@ -1,0 +1,16 @@
+---
+- hosts: manager*
+  tasks:
+  - name: do something
+    command: echo "hey I am a manager and my name is {{inventory_hostname}}"
+    register: output
+  - debug: var=output.stdout
+
+- hosts: worker*
+  tasks:
+  - name: do something
+    command: echo "hey I am a worker and my name is {{inventory_hostname}}"
+    register: output
+  - debug: var=output.stdout
+
+
