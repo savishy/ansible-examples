@@ -57,7 +57,7 @@ def getAllDockerMachines():
 def getAnsibleDockerInventoryGroup(dmName):
 
     return {
-        "hosts": ["localhost"],
+        "hosts": [dmName],
         "vars": {
 
             # at the moment docker-machine is always using this port
@@ -83,8 +83,7 @@ json_data = {
     # }
 }
 for line in getAllDockerMachines().split('\n'):
-    docker_machine_name = line
-    json_data[line] = getAnsibleDockerInventoryGroup(docker_machine_name)
+    json_data[line] = getAnsibleDockerInventoryGroup(line)
     
 print json.dumps(json_data, indent=4)
     
