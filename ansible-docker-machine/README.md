@@ -17,3 +17,4 @@ This example demonstrates integration of Ansible with Docker Machine.
 1. Thanks to [divhide](http://github.com/divhide) for
    [`docker-machine.py`](https://github.com/divhide/example-ansible-docker-connection/blob/master/docker-machine.py)
    I made some modifications to the script to allow adding multiple docker machines.
+1. [How to create dynamic inventory scripts](http://docs.ansible.com/ansible/developing_inventory.html)
