@@ -1,0 +1,19 @@
+---
+  # tasks file for apache
+- name: install apache
+  apt: name=apache2 state=latest
+  # when: ansible_os_family == "Debian"
+- name: install apache modules
+  apache2_module:
+    state: present
+    name: "{{item}}"
+  with_items:
+    - setenvif
+    - headers
+    - deflate
+    - filter
+    - expires
+    - rewrite
+    - include
+  notify:
+    - restart apache

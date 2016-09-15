@@ -1,0 +1,10 @@
+---
+# defaults file for apache
+apache_modules:
+  - setenvif
+  - headers
+  - deflate
+  - filter
+  - expires
+  - rewrite
+  - include
