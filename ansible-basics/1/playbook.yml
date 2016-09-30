@@ -1,2 +1,25 @@
 ---
-# This is a playbook. Fill this up!
+# This is a play.
+- hosts: group0
+  name: execute play 1
+  # these are the tasks within this play.
+  tasks:
+    - name: execute a shell command on machine
+      command: echo "hello world"
+
+    # NOTE: this command will look up environment vars on YOUR machine, not
+    # the host.
+    - name: lookup an environment var on your machine and store its output in a variable.
+      command: echo {{lookup('env','PATH')}}
+      register: env_var_path
+
+    - name: print variable value
+      debug: var=env_var_path.stdout
+
+# this is another play.
+- hosts: group1
+  name: execute play 2
+  # these are the tasks within this play.
+  tasks:
+  - name: execute a different shell command on machine
+    command: echo "goodbye world"
