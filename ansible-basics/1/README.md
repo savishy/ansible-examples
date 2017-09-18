@@ -1,4 +1,4 @@
-# Ansible Basics (1)
+# Ansible Basics (1) - Answers
 
 This example illustrates several Ansible basics in one go.
 
@@ -6,15 +6,17 @@ This example illustrates several Ansible basics in one go.
 * autogeneration of inventory (in this case using a ruby script)
 * inventory groups
 
-## How to use
+### Run `./prepare.rb`
+![image](https://user-images.githubusercontent.com/13379978/30531456-14e52166-9c6c-11e7-8df5-b13134381523.png)
 
-### Prerequisites
+### Troubleshooting
 
-1. The inventory here is created using Docker and a Ruby script. So you will need Docker and Ruby.
-1. Linux is assumed.
-1. Ansible 2.0+.
+You might encounter an error similar to the following:
 
-### Run
-1. First create the inventory. Run the script `./prepare.rb` (or `ruby prepare.rb`).
-  This will delete past containers and restart 3 docker containers using a common base image.
-  (It's ok if you don't know what that means: just understand that 3 hosts are created)
+![image](https://user-images.githubusercontent.com/13379978/30531554-bae5f464-9c6c-11e7-861a-95b83081eb89.png)
+
+* Ansible uses SSH under the hood.
+* This error was thrown by SSH.
+* SSH is complaining that the key `insecure_key` is too permissive.
+
+To fix this you need to make the permissions of `insecure_key` more restrictive, e.g. `sudo chmod 600 insecure_key`
