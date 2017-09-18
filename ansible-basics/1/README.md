@@ -9,6 +9,15 @@ This example illustrates several Ansible basics in one go.
 ### Run `./prepare.rb`
 ![image](https://user-images.githubusercontent.com/13379978/30531456-14e52166-9c6c-11e7-8df5-b13134381523.png)
 
+## Run Playbook
+
+`ansible-playbook -i inventory 1/playbook.yml`
+
+If you followed all the steps you should see output similar to the following:
+
+![image](https://user-images.githubusercontent.com/13379978/30533120-52c4bbbe-9c75-11e7-822e-84cf8aceeb8b.png)
+
+
 ### Troubleshooting
 
 You might encounter an error similar to the following:
