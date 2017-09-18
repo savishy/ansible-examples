@@ -3,24 +3,10 @@
   name: make group0 a web-server
   tasks:
     - name: install apache
-      apt: name=apache2 state=latest
-      # when: ansible_os_family == "Debian"
+    # insert module here
+
     - name: install apache modules
-      apache2_module:
-        state: present
-        name: "{{item}}"
-      with_items:
-        - setenvif
-        - headers
-        - deflate
-        - filter
-        - expires
-        - rewrite
-        - include
-      notify:
-        - restart apache
-    handlers:
-      - name: restart apache
-        service:
-          name: apache
-          state: restarted
+    # insert module here
+  handlers:
+    - name: restart apache
+    # insert module here
