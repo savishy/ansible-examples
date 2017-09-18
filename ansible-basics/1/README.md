@@ -17,6 +17,17 @@ If you followed all the steps you should see output similar to the following:
 
 ![image](https://user-images.githubusercontent.com/13379978/30533120-52c4bbbe-9c75-11e7-822e-84cf8aceeb8b.png)
 
+## Note: `ansible.cfg`
+
+Take a look at [ansible.cfg](ansible.cfg). The inventory is already configured here.
+This means you can run the playbook from the `ansible-basics/1` directory as well:
+
+```
+cd ansible-basics/1
+ansible-playbook playbook.yml
+```
+
+![image](https://user-images.githubusercontent.com/13379978/30533231-e7ca8d1a-9c75-11e7-9b2c-cf47051c09bd.png)
 
 ### Troubleshooting
 
