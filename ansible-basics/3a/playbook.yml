@@ -1,0 +1,6 @@
+---
+- hosts: group0
+  # Include a playbook that will run all of the tasks from exercise 2.
+
+- hosts: group1
+  # Include a playbook that will install mysql-server on the hosts in group1.
