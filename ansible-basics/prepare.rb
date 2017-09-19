@@ -13,7 +13,7 @@ puts "---- Starting Docker Containers"
   inventoryname = "ansible-docker-host#{i}"
   # stop and rerun containers
   system("docker rm -f #{inventoryname}")
-  system("docker run -d --name #{inventoryname} ansible-docker-hostimage")
+  system("docker run -d -p :80 --name #{inventoryname} ansible-docker-hostimage")
 
   # get ip address stripped of new lines
   inventoryip = `docker inspect -f {{.NetworkSettings.IPAddress}} #{inventoryname}`.strip
