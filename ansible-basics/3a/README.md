@@ -1,20 +1,15 @@
-# Ansible Basics (3a)
+# Ansible Basics (3a) (Answers)
 
 This exercise introduces you to code reuse using `include`s.
+Take a look at the codebase for the solution.
 
-## Task 1: Install MySQL Server
 
-On the servers in `group1` you need to install and start `mysql-server`.
-Figure out how to do this via Ansible.
+## Note: prerequisite package
 
-## Task 2: Use `include`
+Note: the `mysql-server` package requires `python-mysqld` package, else you will see the output below:
 
-Create 3 playbooks:
-* `playbook.yml`
-* `apache.yml`
-* `mysql.yml`.
+![image](https://user-images.githubusercontent.com/13379978/30588060-f0502a70-9d52-11e7-9495-ed651271d1d3.png)
 
-The `playbook.yml` will simply include the other two playbooks.
+## Output
 
-Further, `apache.yml` will have all of the tasks from Exercise 2 to install Apache2 and modules on `group0`.
-`mysql.yml` will have the tasks to install and start `mysql-server` on `group1`.
+![image](https://user-images.githubusercontent.com/13379978/30588178-5e1aca7e-9d53-11e7-9ac9-a22151076cb7.png)
