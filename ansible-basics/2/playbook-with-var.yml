@@ -1,0 +1,31 @@
+---
+# This playbook introduces the idea of separating functionality from data.
+# The list of apache modules to install is stored separately, in a variable.
+
+- hosts: group0
+  name: make group0 a web-server
+  vars:
+    apache_modules:
+        - setenvif
+        - headers
+        - deflate
+        - filter
+        - expires
+        - rewrite
+        - include
+  tasks:
+    - name: install apache
+      apt: name=apache2 state=latest
+      # when: ansible_os_family == "Debian"
+    - name: install apache modules
+      apache2_module:
+        state: present
+        name: "{{item}}"
+      with_items: "{{apache_modules}}"
+      notify:
+        - restart apache
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted

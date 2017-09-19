@@ -35,6 +35,8 @@ With the Apache2 Module you would have written your code like this:
 
 But this is _really repetitive!_ And we want to keep our code **D.R.Y.** (Don't Repeat Yourself).
 
+**Use Loop Control!**
+
 You can use loop control effectively here to
 * Create a list of "items" you want to loop over;
 * Pass the list of items to your module;
@@ -56,6 +58,9 @@ You can use loop control effectively here to
       notify:
         - restart apache
 ```
+
+Take a look at [playbook.yml](playbook.yml) which demonstrates these concepts.
+
 
 ### Output
 
@@ -80,6 +85,8 @@ handlers:
 
 Next, we `notify` the handler to run if the `apache2_module` tasks have changed.
 
+:exclamation: *Note how the value of `item` is dereferenced, with the `{{}}`*.
+
 ```
     - name: install apache modules
       apache2_module:
@@ -97,8 +104,19 @@ Next, we `notify` the handler to run if the `apache2_module` tasks have changed.
         - restart apache
 ```
 
+Take a look at [playbook.yml](playbook.yml) which demonstrates these concepts.
+
 ### Output:
 
 The handler has run once on each server, at the very end.
 
 ![image](https://user-images.githubusercontent.com/13379978/30576072-d7557424-9d22-11e7-9140-a931bae507f2.png)
+
+## Introducing Ansible Variables
+
+What if we want to separate *code* from *data*?
+What if we don't want to change the Ansible task, in order to modify the list of apache2 modules to install?
+
+The answer is **Variables.**
+
+Take a look at the [playbook-with-var.yml](playbook-with-var.yml) which stores the apache2 module list in a variable.
