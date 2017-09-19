@@ -1,5 +1,0 @@
----
-- hosts: group0
-  roles:
-    - apache
-    
