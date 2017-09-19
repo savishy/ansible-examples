@@ -1,0 +1,29 @@
+---
+#https://stackoverflow.com/questions/26597926/install-mysql-with-ansible-on-ubuntu
+- hosts: group1
+  vars:
+    - mysql_root_pass: root
+  name: make group1 a db-server
+  tasks:
+    - name: install mysql
+      apt: name=python-mysqldb state=latest
+
+    - name: install mysql
+      apt: name=mysql-server state=latest
+
+    - name: Start the MySQL service
+      service:
+        name: mysql
+        state: started
+    - name: Update MySQL root password for all root accounts
+      mysql_user:
+        name: root
+        host: "{{ item }}"
+        password: "{{ mysql_root_pass }}"
+        priv: "*.*:ALL,GRANT"
+        state: present
+      with_items:
+        - "{{ ansible_hostname }}"
+        - 127.0.0.1
+        - ::1
+        - localhost
