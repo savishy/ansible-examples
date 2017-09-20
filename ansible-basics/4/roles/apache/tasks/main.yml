@@ -1,17 +1,2 @@
 ---
   # tasks file for apache
-- name: install apache
-  apt: name=apache2 state=latest
-  when: ansible_os_family == "Debian"
-
-- name: install apache
-  yum: name=apache2 state=latest
-  when: ansible_os_family == "CentOS"
-
-- name: install apache modules
-  apache2_module:
-    state: present
-    name: "{{item}}"
-  with_items: apache_modules
-  notify:
-    - restart apache
