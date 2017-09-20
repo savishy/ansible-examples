@@ -2,7 +2,9 @@
 
 Example of Ansible + Handlers + Roles + Variables.
 
-Here we introduce variables.
+Here we dive into
+* variables
+* conditionals
 
 ## Task 1
 
