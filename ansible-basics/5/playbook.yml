@@ -1,0 +1,4 @@
+---
+- hosts: group0
+  roles:
+    - { role: downloaded-roles/geerlingguy.java }
