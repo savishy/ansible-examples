@@ -2,4 +2,7 @@
 - hosts: group0
   roles:
     - apache
-    
+
+- hosts: group1
+  roles:
+    - mysql

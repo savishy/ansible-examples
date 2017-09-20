@@ -1,0 +1,31 @@
+---
+# Note: read http://docs.ansible.com/ansible/latest/mysql_user_module.html
+# MySQL server installs with default login_user of ‘root’ and no password.
+# To secure this user as part of an idempotent playbook, you must create at least two tasks:
+# the first must change the root user’s password, without providing any login_user/login_password details.
+# The second must drop a ~/.my.cnf file containing the new root credentials.
+# Subsequent runs of the playbook will then succeed by reading the new credentials from the file.
+- name: install mysql
+  apt: name=python-mysqldb state=latest
+
+- name: install mysql
+  apt: name=mysql-server state=latest
+
+- name: Start the MySQL service
+  service:
+    name: mysql
+    state: started
+- name: Update MySQL root password for all root accounts
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_root_pass }}"
+    priv: "*.*:ALL,GRANT"
+    state: present
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+- name: Copy the root credentials as .my.cnf file
+  template: src=root.cnf dest=~/.my.cnf mode=0600

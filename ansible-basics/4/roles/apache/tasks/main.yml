@@ -12,6 +12,6 @@
   apache2_module:
     state: present
     name: "{{item}}"
-  with_items: apache_modules
+  with_items: "{{apache_modules}}"
   notify:
     - restart apache
