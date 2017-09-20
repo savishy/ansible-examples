@@ -1,4 +1,4 @@
 ---
 - hosts: group0
   roles:
-    - { role: downloaded-roles/geerlingguy.java }
+   - {role: downloaded-roles/ansible-role-tomcat}
