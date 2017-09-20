@@ -1,2 +1,4 @@
 ---
 # defaults file for apache
+# Any variables used by the role can be defined here.
+# NOTE: VARIABLES DEFINED HERE HAVE LOWEST PRECEDENCE.
